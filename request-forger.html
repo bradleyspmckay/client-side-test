@@ -13,6 +13,8 @@
                 background-color: #d72323;
                 border-radius: 15px;
                 padding: 9px;
+                border-color: #303841;
+                border-style:solid;
             }
             .user_panel {
                 background-color: #303841;
@@ -38,6 +40,24 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
+
+            function update_action_and_method(event) {
+                
+                event.preventDefault();
+
+                const form = event.target;
+                const form_to_update = $("#csrf_form");
+
+                form_to_update.attr("action", form.elements["action"].value);
+                form_to_update.attr("method", form.elements["method"].value);
+
+                document.getElementById("chosen_csrf_url").innerText = form.elements["action"].value;
+                document.getElementById("chosen_csrf_method").innerText = form.elements["method"].value;
+
+                form.reset();
+
+            }
+
             function add_input(event) {
 
                 event.preventDefault();
@@ -82,20 +102,6 @@
 
             }
 
-            function send_csrf(event) {
-
-                event.preventDefault();
-
-                const csrf_form = event.target;
-                const url_element = csrf_form.getElementsByClassName("csrf_form_attribute_url");
-                const method_element = csrf_form.getElementsByClassName("csrf_form_attribute_method");
-                csrf_form.action = url_element.value;
-                csrf_form.method = method_element.value;
-                //csrf_form.removeChild(url_element);
-                //csrf_form.removeChild(method_element);
-                csrf_form.submit();
-            }
-
         </script>
     </head>
     <body>
@@ -103,7 +109,31 @@
         <h1 id="main_heading"><b>Request Forger</b></h1>
         
         <div class="user_panel">
-            <h2>CSRF Form Generator</h2>
+
+            <h1>Disclaimer:</h1>
+            <p>This tool is designed to test web applications and related technology for security and configuration issues. It is strongly encouraged to only use this tool within the confines of the law.</p>
+            <p>Always ensure you have property authority and permissions to use this tool for any kind of testing.</p>
+            <hr>
+
+            <h3>1. Choose the action (URL) and method (GET or POST)</h3>
+            <form id="add_csrf_action_and_method" class="visual_form" onsubmit="update_action_and_method(event)">
+
+                <label for="action">Action URL:</label>
+                <input id="action" type="text">
+                <br><br>
+
+                <label>Method:</label>
+                <input id="method" type="text">
+                <br><br>
+
+                <input type="submit" value="Update">
+
+            </form>
+
+            <br>
+            <hr>
+
+            <h3>2. Add parameters as needed</h3>
 
             <form id="add_csrf_parameter" class="visual_form" onsubmit="add_input(event)">
 
@@ -126,28 +156,23 @@
                 <br><br>
 
             </form>
-            <hr><br>
+            <hr>
+
+            <h3>3. Enter the data and hit send!</h3>
+
+            <p>
+                <b>URL:</b> <span id="chosen_csrf_url">Not Set</span> |
+                <b>Method:</b> <span id="chosen_csrf_method">Not Set</span>
+            </p>
 
             <form id="csrf_form" class="visual_form" onsubmit="send_csrf(event)">
-
-                <!-- Enter URL and method for payload -->
-                <label for="csrf_url">Form URL:</label>
-                <input id="csrf_url" class="csrf_form_attribute_url" type="text">
-                
-
-                <label for="csrf_method">Form Method:</label>
-                <input id="csrf_method" class="csrf_form_attribute_method" type="text">
 
                 <p>Form Parameters:</p>
 
                 <input id="csrf_submit_button" type="submit" value="Send">
 
             </form>
-            <br>
-
-            <!-- Placeholder for generated CSRF payload form -->
-            <div id="payload_form_div"></div>
-
+            <p><b>Pro Tip:</b> Hold ctrl when you click send to keep this page open when you submit the form :)</p>
 
             <hr>
             <h2>CSRF Reference</h2>
@@ -165,11 +190,8 @@
 
     </body>
     <!-- Add ability to view payload in code format -->
-    <!-- Change generate functionality to only produce copy/pasteable code -->
-    <!-- Implement payload execution from middle section instead of it being a precursor to the generated form -->
     <!-- Add ability to generate an img tag payload rather than a form post or both at the time same -->
-    <!-- Investigate the potential for executing the payload in a new tab by default so the request forger app remains open -->
     <!-- Implement JQuery as best as possible -->
     <!-- Start building additional tabs to host other tools such as a clickjacking tester -->
-    <!-- Implement dark and light mode for practices -->
+    <!-- Implement dark and light mode for practice -->
 </html>
