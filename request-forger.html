@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Request Forger</title>
+        <style>
+            html {
+                font-family: Arial, Helvetica, sans-serif;
+                color: #eeeeee;
+                text-align: center;
+            }
+            #main_heading {
+                text-align: center; 
+                background-color: #d72323;
+                border-radius: 15px;
+                padding: 9px;
+            }
+            .user_panel {
+                background-color: #303841;
+                padding: 9px;
+                border-radius: 25px;
+                text-align: center;
+            }
+            body {
+                background-color: #3a4750;
+            }
+            a {
+                color: #d72323;
+            }
+            hr {
+                color: #eeeeee;
+            }
+            input {
+                color:#eeeeee;
+                background-color:#3a4750;
+                border-radius: 4px;
+                border-style:ridge;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function add_input(event) {
+
+                event.preventDefault();
+
+                const form = event.target;
+                const parameter_name = form.elements["parameter_to_add"].value;
+                const form_to_change = document.getElementById("csrf_form");
+                const csrf_submit_button = document.getElementById("csrf_submit_button");
+                
+                const new_label = document.createElement("label");
+                new_label.setAttribute("for", parameter_name);
+                new_label.innerText = parameter_name + ": ";
+                form_to_change.appendChild(new_label);
+
+                type = check_radio_input(form);
+
+                const new_input = document.createElement("input");
+                new_input.setAttribute("type", type);
+                new_input.setAttribute("name", parameter_name);
+                new_input.setAttribute("id", parameter_name);
+                new_input.setAttribute("class", "csrf_submission_value");
+                form_to_change.appendChild(new_input);
+                
+                form_to_change.appendChild(document.createElement("br"));
+                form_to_change.appendChild(document.createElement("br"));
+
+                form_to_change.removeAttribute(csrf_submit_button);
+                form_to_change.appendChild(csrf_submit_button);
+
+                form.reset();
+            }
+
+            function check_radio_input(form) {
+
+                if (form["file"].checked == true) {
+                    return "file";
+                }
+
+                else {
+                    return "text";
+                }
+
+            }
+
+            function send_csrf(event) {
+
+                event.preventDefault();
+
+                const csrf_form = event.target;
+                const url_element = csrf_form.getElementsByClassName("csrf_form_attribute_url");
+                const method_element = csrf_form.getElementsByClassName("csrf_form_attribute_method");
+                csrf_form.action = url_element.value;
+                csrf_form.method = method_element.value;
+                //csrf_form.removeChild(url_element);
+                //csrf_form.removeChild(method_element);
+                csrf_form.submit();
+            }
+
+        </script>
+    </head>
+    <body>
+
+        <h1 id="main_heading"><b>Request Forger</b></h1>
+        
+        <div class="user_panel">
+            <h2>CSRF Form Generator</h2>
+
+            <form id="add_csrf_parameter" class="visual_form" onsubmit="add_input(event)">
+
+                <!-- Input name of parameter to add -->
+                <label for="parameter_to_add">Parameter Name:</label>
+                <input id="parameter_to_add" type="text">
+                <br><br>
+
+                <!-- Radio options to select type of parameter to add -->
+                <input id="text" type="radio" name="parameter_type" value="text">
+                <label for="text">Text</label>
+                <br>
+
+                <input id="file" type="radio" name="parameter_type" value="file">
+                <label for="file">File</label>
+                <br><br>
+
+                <!-- Submit to add parameter -->
+                <input type="submit" value="Add Parameter">
+                <br><br>
+
+            </form>
+            <hr><br>
+
+            <form id="csrf_form" class="visual_form" onsubmit="send_csrf(event)">
+
+                <!-- Enter URL and method for payload -->
+                <label for="csrf_url">Form URL:</label>
+                <input id="csrf_url" class="csrf_form_attribute_url" type="text">
+                
+
+                <label for="csrf_method">Form Method:</label>
+                <input id="csrf_method" class="csrf_form_attribute_method" type="text">
+
+                <p>Form Parameters:</p>
+
+                <input id="csrf_submit_button" type="submit" value="Send">
+
+            </form>
+            <br>
+
+            <!-- Placeholder for generated CSRF payload form -->
+            <div id="payload_form_div"></div>
+
+
+            <hr>
+            <h2>CSRF Reference</h2>
+
+            <b><a href="https://owasp.org/www-community/attacks/csrf">OWASP - Cross Site Request Forgery</a></b>
+            <br><br>
+
+            <b><a href="https://portswigger.net/web-security/csrf">PortSwigger - Cross Site Request Forgery</a></b>
+            <br><br>
+
+            <b><a href="https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery">HackTricks - CSRF Testing Guide</a></b>
+            <br><br>
+
+        </div>
+
+    </body>
+    <!-- Add ability to view payload in code format -->
+    <!-- Change generate functionality to only produce copy/pasteable code -->
+    <!-- Implement payload execution from middle section instead of it being a precursor to the generated form -->
+    <!-- Add ability to generate an img tag payload rather than a form post or both at the time same -->
+    <!-- Investigate the potential for executing the payload in a new tab by default so the request forger app remains open -->
+    <!-- Implement JQuery as best as possible -->
+    <!-- Start building additional tabs to host other tools such as a clickjacking tester -->
+    <!-- Implement dark and light mode for practices -->
+</html>
