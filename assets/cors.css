@@ -1,0 +1,30 @@
+html {
+    font-family: Helvetica;
+    color: #f2f2f2;
+    text-align: center;
+    background-color: #222831;
+}
+#banner { 
+    background-color: #f96d00;
+    position: absolute;
+    top: 0pt;
+    right: 0pt;
+    left: 0pt;
+}
+#banner_heading {
+    text-align: left;
+    margin-left: 8pt;
+}
+#home_link {
+    position: absolute;
+    background-color: #222831;
+    right: 40pt;
+    top: 13pt;
+    padding: 10pt;
+    color: #f2f2f2;
+    width: 40pt;
+}
+a {
+    text-decoration: none;
+    color:#f96d00;
+}

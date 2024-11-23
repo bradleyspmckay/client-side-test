@@ -1,0 +1,51 @@
+html {
+    font-family: Helvetica;
+    background-color: #222831;
+    color: #f2f2f2;
+}
+#banner {
+    background-color: #f96d00;
+    position: absolute;
+    top: 0pt;
+    left: 0pt;
+    right: 0pt;
+}
+#disclaimer {
+    position: absolute;
+    top: 65pt;
+    left: 5pt;
+    right: 5pt;
+    border-style: solid;
+    text-align: center;
+    padding: 0pt 5pt 0pt 5pt;
+}
+#banner_title {
+    margin-left: 8pt;
+}
+#link_box {
+    font-size: 15pt;
+    text-align: center;
+    position: absolute;
+    top: 200pt;
+    margin-left: 10pt
+}
+div.link {
+    position: absolute;
+    width: 3in;
+    padding: .1in;
+}
+#csrf_link {
+    margin-left: 0pt;
+}
+#cors_link {
+    margin-left: 135pt;
+}
+.tool_link {
+    padding: 5pt;
+    border-style: none;
+    text-decoration: none;
+    color: #222831;
+    background-color: #f96d00;
+    display: flex;
+    width: 100pt;
+}

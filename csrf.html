@@ -2,21 +2,16 @@
 <html>
     <head>
         <title>Request Forger</title>
-        <link rel="stylesheet" href="csrf.css">
-        <script src="csrf.js"></script>
+        <link rel="stylesheet" href="/assets/csrf.css">
+        <script src="/assets/csrf.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-
-        <h1 id="main_heading"><b>Request Forger</b></h1>
-        
-        <div class="user_panel">
-
-            <h1>Disclaimer:</h1>
-            <p>This tool is designed to test web applications and related technology for security and configuration issues. It is strongly encouraged to only use this tool within the confines of the law.</p>
-            <p>Always ensure you have property authority and permissions to use this tool for any kind of testing.</p>
-            <hr>
-
+        <div id="banner">
+            <h1 id="banner_heading">Request Forger</h1>
+            <a id="home_link" href="/index.html">Home</a>
+        </div>
+        <div id="user_panel">
             <h3>1. Choose the action (URL) and method (GET or POST)</h3>
             <form id="add_csrf_action_and_method" class="visual_form" onsubmit="update_action_and_method(event)">
 
