@@ -25,9 +25,10 @@ html {
     width: 40pt;
 }
 #user_panel {
-    margin-top: 55pt;
+    position: relative;
+    top: 60pt;
     padding: 9px;
-    left: 50pt;
+    background-color: #393e46;
 }
 input {
     color:#f2f2f2;
@@ -37,4 +38,16 @@ input {
 a {
     text-decoration: none;
     color:#f96d00;
+}
+input.submit {
+    background-color: #f96d00;
+    border-style: none;
+    color: #222831;
+    width: 100pt;
+    height: 20pt;
+    font-weight: 600;
+}
+#references {
+    text-align: left;
+    margin-left: 1pt;
 }

@@ -22,7 +22,7 @@
                 <input id="method" type="text">
                 <br><br>
 
-                <input type="submit" value="Update">
+                <input type="submit" value="Update" class="submit">
 
             </form>
 
@@ -48,7 +48,7 @@
                 <br><br>
 
                 <!-- Submit to add parameter -->
-                <input type="submit" value="Add Parameter">
+                <input type="submit" value="Add Parameter" class="submit">
                 <br><br>
 
             </form>
@@ -65,23 +65,20 @@
 
                 <p>Form Parameters:</p>
 
-                <input id="csrf_submit_button" type="submit" value="Send">
+                <input id="csrf_submit_button" type="submit" value="Send" class="submit">
 
             </form>
-            <p><b>Pro Tip:</b> Hold ctrl when you click send to keep this page open when you submit the form :)</p>
+            <br>
 
             <hr>
-            <h2>CSRF Reference</h2>
-
-            <b><a href="https://owasp.org/www-community/attacks/csrf">OWASP - Cross Site Request Forgery</a></b>
-            <br><br>
-
-            <b><a href="https://portswigger.net/web-security/csrf">PortSwigger - Cross Site Request Forgery</a></b>
-            <br><br>
-
-            <b><a href="https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery">HackTricks - CSRF Testing Guide</a></b>
-            <br><br>
-
+            <div id="references">
+                <a href="https://owasp.org/www-community/attacks/csrf">Open Web Application Security Project (OWASP) - Cross Site Request Forgery</a>
+                <br>
+                <a href="https://portswigger.net/web-security/csrf">PortSwigger - Cross Site Request Forgery</a>
+                <br>
+                <a href="https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery">HackTricks - CSRF Testing Guide</a>
+                <br>
+            </div>    
         </div>
 
     </body>
