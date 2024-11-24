@@ -49,3 +49,13 @@ div.link {
     display: flex;
     width: 100pt;
 }
+#footer {
+    position: absolute;
+    bottom: 20pt;
+    left: 10pt;
+    right: 10pt;
+}
+#issues_link {
+    color:#f96d00;
+    text-decoration: none;
+}
