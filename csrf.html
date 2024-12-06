@@ -1,91 +1,109 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Request Forger</title>
-        <link rel="stylesheet" href="./assets/csrf.css">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="./assets/csrf.js"></script>
-    </head>
-    <body>
-        <div id="banner">
-            <h1 id="banner_heading">Request Forger</h1>
-            <a id="home_link" href="./index.html">Home</a>
-        </div>
-        <div id="user_panel">
-            <h3>1. Choose the action (URL) and method (GET or POST)</h3>
-            <form id="add_csrf_action_and_method" class="visual_form" onsubmit="update_action_and_method(event)">
+  <head>
+    <title>Request Forger</title>
+    <link rel="stylesheet" href="./assets/csrf.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/csrf.js"></script>
+  </head>
+  <body>
+    <div id="banner">
+      <h1 id="banner_heading">Request Forger</h1>
+      <a id="home_link" href="./index.html">Home</a>
+    </div>
+    <div id="user_panel">
+      <h3>1. Choose the action (URL) and method (GET or POST)</h3>
+      <form
+        id="add_csrf_action_and_method"
+        class="visual_form"
+        onsubmit="update_action_and_method(event)"
+      >
+        <label for="action">Action URL:</label>
+        <input id="action" type="text" />
+        <br /><br />
 
-                <label for="action">Action URL:</label>
-                <input id="action" type="text">
-                <br><br>
+        <label>Method:</label>
+        <input id="method" type="text" />
+        <br /><br />
 
-                <label>Method:</label>
-                <input id="method" type="text">
-                <br><br>
+        <input type="submit" value="Update" class="submit" />
+      </form>
 
-                <input type="submit" value="Update" class="submit">
+      <br />
+      <hr />
 
-            </form>
+      <h3>2. Add parameters as needed</h3>
 
-            <br>
-            <hr>
+      <form
+        id="add_csrf_parameter"
+        class="visual_form"
+        onsubmit="add_input(event)"
+      >
+        <!-- Input name of parameter to add -->
+        <label for="parameter_to_add">Parameter Name:</label>
+        <input id="parameter_to_add" type="text" />
+        <br /><br />
 
-            <h3>2. Add parameters as needed</h3>
+        <!-- Radio options to select type of parameter to add -->
+        <input id="text" type="radio" name="parameter_type" value="text" />
+        <label for="text">Text</label>
+        <br />
 
-            <form id="add_csrf_parameter" class="visual_form" onsubmit="add_input(event)">
+        <input id="file" type="radio" name="parameter_type" value="file" />
+        <label for="file">File</label>
+        <br /><br />
 
-                <!-- Input name of parameter to add -->
-                <label for="parameter_to_add">Parameter Name:</label>
-                <input id="parameter_to_add" type="text">
-                <br><br>
+        <!-- Submit to add parameter -->
+        <input type="submit" value="Add Parameter" class="submit" />
+        <br /><br />
+      </form>
+      <hr />
 
-                <!-- Radio options to select type of parameter to add -->
-                <input id="text" type="radio" name="parameter_type" value="text">
-                <label for="text">Text</label>
-                <br>
+      <h3>3. Enter the data and hit send!</h3>
 
-                <input id="file" type="radio" name="parameter_type" value="file">
-                <label for="file">File</label>
-                <br><br>
+      <p>
+        <b>URL:</b> <span id="chosen_csrf_url">Not Set</span> | <b>Method:</b>
+        <span id="chosen_csrf_method">Not Set</span>
+      </p>
 
-                <!-- Submit to add parameter -->
-                <input type="submit" value="Add Parameter" class="submit">
-                <br><br>
+      <form id="csrf_form" class="visual_form" onsubmit="send_csrf(event)">
+        <p>Form Parameters:</p>
 
-            </form>
-            <hr>
+        <input
+          id="csrf_submit_button"
+          type="submit"
+          value="Send"
+          class="submit"
+        />
+      </form>
+      <br />
 
-            <h3>3. Enter the data and hit send!</h3>
-
-            <p>
-                <b>URL:</b> <span id="chosen_csrf_url">Not Set</span> |
-                <b>Method:</b> <span id="chosen_csrf_method">Not Set</span>
-            </p>
-
-            <form id="csrf_form" class="visual_form" onsubmit="send_csrf(event)">
-
-                <p>Form Parameters:</p>
-
-                <input id="csrf_submit_button" type="submit" value="Send" class="submit">
-
-            </form>
-            <br>
-
-            <hr>
-            <div id="references">
-                <a href="https://owasp.org/www-community/attacks/csrf">Open Web Application Security Project (OWASP) - Cross Site Request Forgery</a>
-                <br>
-                <a href="https://portswigger.net/web-security/csrf">PortSwigger - Cross Site Request Forgery</a>
-                <br>
-                <a href="https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery">HackTricks - CSRF Testing Guide</a>
-                <br>
-            </div>    
-        </div>
-
-    </body>
-    <!-- Add ability to view payload in code format -->
-    <!-- Add ability to generate an img tag payload rather than a form post or both at the time same -->
-    <!-- Implement JQuery as best as possible -->
-    <!-- Start building additional tabs to host other tools such as a clickjacking tester -->
-    <!-- Implement dark and light mode for practice -->
+      <hr />
+      <div id="references">
+        <a href="https://owasp.org/www-community/attacks/csrf"
+          >Open Web Application Security Project (OWASP) - Cross Site Request
+          Forgery</a
+        >
+        <br />
+        <a href="https://portswigger.net/web-security/csrf"
+          >PortSwigger - Cross Site Request Forgery</a
+        >
+        <br />
+        <a
+          href="https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery"
+          >HackTricks - CSRF Testing Guide</a
+        >
+        <br />
+      </div>
+    </div>
+  </body>
+  <!-- Add ability to view payload in code format -->
+  <!-- Add ability to generate an img tag payload rather than a form post or both at the time same -->
+  <!-- Implement JQuery as best as possible -->
+  <!-- Start building additional tabs to host other tools such as a clickjacking tester -->
+  <!-- Implement dark and light mode for practice -->
 </html>

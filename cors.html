@@ -10,5 +10,23 @@
             <h1 id="banner_heading">Cross-Origin Resource Sharing</h1>
             <a id="home_link" href="./index.html">Home</a>
         </div>
+        <div id="user_panel">
+            <div id="input_area">
+                <form id="url_target_form" onsubmit="testURL(event)">
+                    <label for="url_to_test">URL:</label>
+                    <input name="url_to_test" type="text"><br><br>
+                    <input type="submit" class="submit">
+                </form>
+            </div>
+            <div id="output_area">
+                <hr>
+                <div id="result_header">
+                    <h3>Result</h3>
+                </div>
+                <div id="output_text">
+                    <p id="results">Enter a URL and hit submit</p>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

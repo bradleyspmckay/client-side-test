@@ -24,7 +24,37 @@ html {
     color: #f2f2f2;
     width: 40pt;
 }
+#user_panel {
+    position: relative;
+    top: 60pt;
+    height: 200pt;
+    padding: 9px;
+    background-color: #393e46;
+    text-align: center;
+}
+input {
+    color:#f2f2f2;
+    background-color:#393e46;
+    border-style:ridge;
+}
 a {
     text-decoration: none;
     color:#f96d00;
+}
+input.submit {
+    background-color: #f96d00;
+    border-style: none;
+    color: #222831;
+    width: 100pt;
+    height: 20pt;
+    font-weight: 600;
+    margin-left: 25pt;
+}
+#input_area {
+    position: relative;
+    top: 10pt;
+}
+#output_area {
+    position: relative;
+    top: 20pt;
 }
